@@ -14,7 +14,7 @@ class postsNew extends Component {
                     <label>Title</label>
                     <input type="text" className="form-control" {...title} />
                     <div className="text-help">
-                        { title.error }
+                        { title.touched ? title.error : '' }
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@ function validate(values) {
     const error = {};
 
     if(!values.title) {
-        error.title = 'Enter A Title';
+        error.title = 'Enter a title';
     }
 
     return error;
