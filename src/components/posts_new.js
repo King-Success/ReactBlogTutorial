@@ -13,6 +13,9 @@ class postsNew extends Component {
                 <div className="form-group">
                     <label>Title</label>
                     <input type="text" className="form-control" {...title} />
+                    <div className="text-help">
+                        { title.error }
+                    </div>
                 </div>
 
                 <div className="form-group">
@@ -31,7 +34,18 @@ class postsNew extends Component {
     }
 }
 
+function validate(values) {
+    const error = {};
+
+    if(!values.title) {
+        error.title = 'Enter A Title';
+    }
+
+    return error;
+}
+
 export default reduxForm({
     form: 'postsNewForm',
-    fields: ['title', 'categories', 'content']
+    fields: ['title', 'categories', 'content'], 
+    validate
 }, null, { createPost })(postsNew);
