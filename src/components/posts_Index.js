@@ -8,6 +8,16 @@ class PostsIndex extends Component {
         this.props.fetchPosts();
     }
 
+    renderPosts() {
+        return this.props.post.map( (post) => {
+            return (
+                <li className="list-group-item" key={post.id}>
+                    <span className="pull-xs-right">{post.categories}</span>
+                    <strong>{post.title}</strong>
+                </li>
+            );
+        });
+    }
     render() {
         return (
             <div> 
@@ -16,14 +26,17 @@ class PostsIndex extends Component {
                         Add post
                     </Link>
                 </div>
-                List of books to be displayed 
+               <h3>Posts</h3>
+               <ul className="list-group">
+                   { this.renderPosts() }
+               </ul>
             </div>
          );
     }   
 }
 
 function mapStateToProps(state) {
-    return { post: state.post.all }
+    return { post: state.posts.all }
 }
 
 
