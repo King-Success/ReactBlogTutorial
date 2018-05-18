@@ -5,12 +5,15 @@ import { Link } from 'react-router';
 
 class postsNew extends Component {
 
-    static contentTypes = {
+    static contextTypes = {
         router: PropTypes.object
     }
 
     onSubmit(props) {
-        this.props.createPost(props);
+        this.props.createPost(props)
+          .then( () => {
+              this.context.router.push('/');
+          });
     }
 
     render() {
