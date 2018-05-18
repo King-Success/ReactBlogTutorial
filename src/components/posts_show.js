@@ -10,7 +10,10 @@ class PostsShow extends Component {
     }
 
     render() {
-        console.log(this.props.post);
+        if(!this.props.post) {
+            return <div>Loading...</div>
+        }
+        
         return <div> This is post { this.props.params.id } </div>
     }
 }
